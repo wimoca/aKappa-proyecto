@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import songs from "./../../assets/songs.json";
-import { COLORS } from "../../colors/colors";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
 import MusicPlayer from "../../components/MusicPlayer";
 

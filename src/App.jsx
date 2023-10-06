@@ -13,7 +13,11 @@ function App() {
       <TopBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/search/:searchTerm" element={<SearchPage />} />
+        <Route
+          path="aKappa-Proyecto/search/:searchTerm"
+          element={<SearchPage />}
+        />
+        <Route path="/aKappa-Proyecto" element={<HomePage />} />
       </Routes>
     </>
   );

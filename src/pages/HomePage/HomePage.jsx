@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import MusicPlayer from "../../components/MusicPlayer";
 import { useState } from "react";
 import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
-import TopBar from "./TopBar/TopBar";
 import songs from "../../assets/songs.json";
 
 function HomePage() {
@@ -14,7 +13,6 @@ function HomePage() {
     setMusic(music);
     setPlayerKey((key) => key + 1);
   }
-
   return (
     <div>
       <div style={styles.cardContainer}>
