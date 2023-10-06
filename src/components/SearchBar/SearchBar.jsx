@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { styles } from "./styles";
-import songs from "./../../assets/songs.json";
 import { Link } from "react-router-dom";
 
 function SearchBar() {
@@ -32,7 +31,9 @@ function SearchBar() {
       />
 
       <Link
-        to={`/search/${searchInput.length > 0 ? searchInput : "emptyString"}`}
+        to={`aKappa-Proyecto/search/${
+          searchInput.length > 0 ? searchInput : "emptyString"
+        }`}
       >
         <LuSearch style={styles.searchIcon} />
       </Link>
