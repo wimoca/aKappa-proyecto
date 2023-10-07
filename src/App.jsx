@@ -18,6 +18,7 @@ function App() {
           element={<SearchPage />}
         />
         <Route path="/aKappa-proyecto" element={<HomePage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </>
   );
