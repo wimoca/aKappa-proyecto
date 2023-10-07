@@ -14,10 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
-          path="aKappa-Proyecto/search/:searchTerm"
+          path="aKappa-proyecto/search/:searchTerm"
           element={<SearchPage />}
         />
-        <Route path="/aKappa-Proyecto" element={<HomePage />} />
+        <Route path="/aKappa-proyecto" element={<HomePage />} />
       </Routes>
     </>
   );
