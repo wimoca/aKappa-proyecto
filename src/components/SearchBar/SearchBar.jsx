@@ -31,9 +31,7 @@ function SearchBar() {
       />
 
       <Link
-        to={`aKappa-proyecto/search/${
-          searchInput.length > 0 ? searchInput : "emptyString"
-        }`}
+        to={`search/${searchInput.length > 0 ? searchInput : "emptyString"}`}
       >
         <LuSearch style={styles.searchIcon} />
       </Link>

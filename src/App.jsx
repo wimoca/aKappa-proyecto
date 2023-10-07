@@ -10,11 +10,7 @@ function App() {
       <TopBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="aKappa-proyecto/search/:searchTerm"
-          element={<SearchPage />}
-        />
-        <Route path="/aKappa-proyecto" element={<HomePage />} />
+        <Route path="search/:searchTerm" element={<SearchPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </>
