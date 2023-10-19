@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import MusicPlayer from "../../components/MusicPlayer";
 import { useState } from "react";
 import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
+import TopBar from "../../components/TopBar/TopBar";
 import songs from "../../assets/songs.json";
+import SideBar from "../../components/SideBar";
 
 function HomePage() {
   const [playerKey, setPlayerKey] = useState(0);
