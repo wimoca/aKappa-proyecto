@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./styles.css";
 import MusicPlayer from "../../components/MusicPlayer";
 import { useState } from "react";
@@ -6,19 +6,27 @@ import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
 import TopBar from "../../components/TopBar/TopBar";
 import songs from "../../assets/songs.json";
-import SideBar from "../../components/SideBar";
+import { getData } from "../../firebase/hooks/getData";
+import playerContext from "../../context/PlayerContext";
 
 function HomePage() {
+  const { songsList, currentSong, setCurrentSong } = useContext(playerContext);
   const [playerKey, setPlayerKey] = useState(0);
   const [music, setMusic] = useState(null);
+
+  useEffect(() => {
+    //getData();
+  }, []);
+
   function onHandleClick(music) {
-    setMusic(music);
+    //setMusic(music);
+    setCurrentSong(music);
     setPlayerKey((key) => key + 1);
   }
   return (
     <div>
       <div style={styles.cardContainer}>
-        {songs.map((song) => (
+        {songsList.map((song) => (
           <SongCard
             song={song}
             onClick={() => onHandleClick(song)}
@@ -26,9 +34,9 @@ function HomePage() {
           />
         ))}
       </div>
-      <div style={styles.musicPlayerContainer}>
-        <MusicPlayer song={music} key={playerKey} />
-      </div>
+      {/* <div style={styles.musicPlayerContainer}>
+        <MusicPlayer />
+      </div> */}
     </div>
   );
 }

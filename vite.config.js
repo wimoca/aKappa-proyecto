@@ -5,4 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "https://wimoca.github.io/aKappa-proyecto",
+  define: { "process.env": process.env },
 });

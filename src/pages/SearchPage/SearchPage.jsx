@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import songs from "./../../assets/songs.json";
@@ -6,22 +6,24 @@ import { COLORS } from "../../colors/colors";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
 import MusicPlayer from "../../components/MusicPlayer";
 import { styles } from "./styles";
+import playerContext from "../../context/PlayerContext";
 
 function SearchPage() {
-  const [currentSong, setCurrentSong] = useState(null);
-  const [playerKey, setPlayerKey] = useState(0);
+  const { setCurrentSong, songsList } = useContext(playerContext);
+  //const [currentSong, setCurrentSong] = useState(null);
+  //const [playerKey, setPlayerKey] = useState(0);
 
   const { searchTerm } = useParams();
   const [filteredArray, setFilteredArray] = useState([]);
 
   const handleClick = (song) => {
     setCurrentSong(song);
-    setPlayerKey((key) => key + 1);
+    //setPlayerKey((key) => key + 1);
   };
 
   const handleSearch = () => {
     if (searchTerm.length > 0) {
-      const filteredSearch = songs.filter((song) => {
+      const filteredSearch = songsList.filter((song) => {
         return (
           song.title.toLowerCase().match(searchTerm) ||
           song.artist.toLowerCase().match(searchTerm) ||
@@ -53,16 +55,6 @@ function SearchPage() {
             );
           })
         )}
-      </div>
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-        }}
-      >
-        <MusicPlayer song={currentSong} key={playerKey} />
       </div>
     </div>
   );
