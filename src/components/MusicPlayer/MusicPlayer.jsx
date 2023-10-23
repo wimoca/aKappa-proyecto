@@ -11,9 +11,9 @@ import { BsStarFill, BsStar } from "react-icons/bs";
 function MusicPlayer() {
   const { currentSong } = useContext(playerContext);
 
-  useEffect(() => {
-    console.log(currentSong);
-  }, [currentSong]);
+  // useEffect(() => {
+  //   console.log(currentSong);
+  // }, [currentSong]);
 
   return (
     <div style={styles.container}>

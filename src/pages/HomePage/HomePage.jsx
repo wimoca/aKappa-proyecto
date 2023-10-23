@@ -6,7 +6,6 @@ import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
 import TopBar from "../../components/TopBar/TopBar";
 import songs from "../../assets/songs.json";
-import { getData } from "../../firebase/hooks/getData";
 import playerContext from "../../context/PlayerContext";
 
 function HomePage() {
@@ -14,9 +13,9 @@ function HomePage() {
   const [playerKey, setPlayerKey] = useState(0);
   const [music, setMusic] = useState(null);
 
-  useEffect(() => {
-    //getData();
-  }, []);
+  // useEffect(() => {
+  //   //getData();
+  // }, []);
 
   function onHandleClick(music) {
     //setMusic(music);
