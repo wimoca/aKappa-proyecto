@@ -6,9 +6,10 @@ import { updateFavorites } from "../../firebase/hooks/updateFavorites";
 import { removeFavorites } from "../../firebase/hooks/removeFavorites";
 import { getUserData } from "../../firebase/hooks/getUserData";
 import { Button } from "@mui/material";
+import { isEmpty } from "../MusicPlayer/hooks/isEmpty";
 
 function FavoriteButton({ song }) {
-  const { userData, setUserData } = useContext(playerContext);
+  const { userData, setUserData, currentSong } = useContext(playerContext);
   const [data, setData] = useState(userData);
   const [track, setTrack] = useState("");
 
@@ -38,6 +39,10 @@ function FavoriteButton({ song }) {
   if (data.length == 0) {
     return null;
   }
+  if (isEmpty(currentSong)) {
+    return null;
+  }
+
   if (data[0]["favorites"].some((item) => item.id === song.id)) {
     return (
       <Button onClick={() => onHandleClick(song, "remove")}>
