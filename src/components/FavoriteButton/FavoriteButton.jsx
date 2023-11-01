@@ -5,6 +5,7 @@ import { COLORS } from "../../colors/colors";
 import { updateFavorites } from "../../firebase/hooks/updateFavorites";
 import { removeFavorites } from "../../firebase/hooks/removeFavorites";
 import { getUserData } from "../../firebase/hooks/getUserData";
+import { Button } from "@mui/material";
 
 function FavoriteButton({ song }) {
   const { userData, setUserData } = useContext(playerContext);
@@ -39,19 +40,15 @@ function FavoriteButton({ song }) {
   }
   if (data[0]["favorites"].some((item) => item.id === song.id)) {
     return (
-      <BsStarFill
-        color={COLORS.accentColor}
-        size={22}
-        onClick={() => onHandleClick(song, "remove")}
-      />
+      <Button onClick={() => onHandleClick(song, "remove")}>
+        <BsStarFill color={COLORS.accentColor} size={22} />
+      </Button>
     );
   } else {
     return (
-      <BsStar
-        color={COLORS.accentColor}
-        size={22}
-        onClick={() => onHandleClick(song, "add")}
-      />
+      <Button onClick={() => onHandleClick(song, "add")}>
+        <BsStar color={COLORS.accentColor} size={22} />
+      </Button>
     );
   }
 }
