@@ -4,6 +4,7 @@ import playerContext from "./PlayerContext";
 import songs from "../../assets/songs.json";
 import { getData } from "../../firebase/hooks/getData";
 import { getUserData } from "../../firebase/hooks/getUserData";
+import { getOnSnapshotUserData } from "../../firebase/hooks/getOnSnapshotUserData";
 
 function PlayerState(props) {
   const initialState = {
@@ -16,7 +17,7 @@ function PlayerState(props) {
   useEffect(() => {
     const getMusicLibrary = async () => {
       await getData(setSongsList);
-      await getUserData(setUserData);
+      await getOnSnapshotUserData(setUserData);
     };
     getMusicLibrary();
   }, []);

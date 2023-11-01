@@ -22,12 +22,14 @@ const Login = () => {
         await createUserWithEmailAndPassword(auth, correo, contraseña).then(
           () => setNewUser()
         );
+        window.location.reload();
       } catch (error) {
         alert("La contraseña debe tener más de 8 caracteres");
       }
     } else {
       try {
         await signInWithEmailAndPassword(auth, correo, contraseña);
+        window.location.reload();
       } catch (error) {
         alert("El correo o la contraseña son incorrectos");
       }
