@@ -14,6 +14,9 @@ function FavoriteButton({ song }) {
   const [track, setTrack] = useState("");
 
   const onHandleClick = async (song, action) => {
+    if (isEmpty(song)) {
+      return;
+    }
     if (action == "add") {
       await updateFavorites(song);
       console.log("add");
@@ -37,9 +40,6 @@ function FavoriteButton({ song }) {
   // }, [userData]);
 
   if (userData.length == 0) {
-    return null;
-  }
-  if (isEmpty(currentSong)) {
     return null;
   }
 
