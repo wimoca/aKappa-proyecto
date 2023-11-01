@@ -12,7 +12,6 @@ export const styles = {
     aspectRatio: 1,
     backgroundColor: COLORS.accentColor,
     margin: 10,
-    cursor: "pointer",
   },
   cover: {
     height: "100%",

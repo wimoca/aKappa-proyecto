@@ -19,11 +19,13 @@ export const styles = {
     //overflow: "hidden",
     //textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+    userSelect: "none",
     //width: "175px",
   },
   albumInfo: {
     fontSize: 14,
     whiteSpace: "nowrap",
+    userSelect: "none",
   },
   artistInfo: {
     whiteSpace: "nowrap",

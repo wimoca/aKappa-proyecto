@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { styles } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
+import { COLORS } from "../../colors/colors";
 
 function SearchBar() {
   const [searchInput, setSearchInput] = useState("");
@@ -10,7 +11,7 @@ function SearchBar() {
     const stringValue = e.target.value
       .trim()
       .toLowerCase()
-      .replace(/[^A-zÀ-ú0-9\s]/gi, "");
+      .replace(/[^A-zÀ-ú0-9-\s]/gi, "");
     e.preventDefault();
     setSearchInput(stringValue);
   };
@@ -30,6 +31,7 @@ function SearchBar() {
         maxLength={100}
         onChange={handleChange}
         onKeyDown={handleEnterKey}
+        color="green"
       />
 
       <Link

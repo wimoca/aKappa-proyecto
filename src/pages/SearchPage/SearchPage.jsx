@@ -6,7 +6,7 @@ import { COLORS } from "../../colors/colors";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
 import MusicPlayer from "../../components/MusicPlayer";
 import { styles } from "./styles";
-import playerContext from "../../context/PlayerContext";
+import playerContext from "../../context/PlayerContext/PlayerContext";
 
 function SearchPage() {
   const { setCurrentSong, songsList } = useContext(playerContext);
@@ -40,6 +40,9 @@ function SearchPage() {
     handleSearch();
   }, [searchTerm]);
 
+  if (songsList.length == 0) {
+    return <div>Loading</div>;
+  }
   return (
     <div style={styles.container}>
       <div>
@@ -51,7 +54,11 @@ function SearchPage() {
         ) : (
           filteredArray.map((song) => {
             return (
-              <ListSongCard song={song} onClick={() => handleClick(song)} />
+              <ListSongCard
+                song={song}
+                onClick={() => handleClick(song)}
+                key={song.id}
+              />
             );
           })
         )}

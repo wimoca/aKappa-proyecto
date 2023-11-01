@@ -5,6 +5,16 @@ const playerReducer = (state, action) => {
         ...state,
         currentSong: action.data,
       };
+    case "SET_SONGS_LIST":
+      return {
+        ...state,
+        songsList: action.data,
+      };
+    case "SET_USER_DATA":
+      return {
+        ...state,
+        userData: action.data,
+      };
 
     default:
       break;

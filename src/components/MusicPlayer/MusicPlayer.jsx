@@ -1,20 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import H5AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./styles.css";
 import { styles } from "./styles";
 import { COLORS } from "../../colors/colors";
-import playerContext from "../../context/PlayerContext";
 import { isEmpty } from "./hooks/isEmpty";
+import playerContext from "../../context/PlayerContext/PlayerContext";
 import { BsStarFill, BsStar } from "react-icons/bs";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 function MusicPlayer() {
   const { currentSong } = useContext(playerContext);
-
-  // useEffect(() => {
-  //   console.log(currentSong);
-  // }, [currentSong]);
-
   return (
     <div style={styles.container}>
       <div style={{ marginRight: 10 }}>
@@ -22,7 +18,7 @@ function MusicPlayer() {
           style={styles.cover}
           src={
             !isEmpty(currentSong)
-              ? currentSong.cover
+              ? currentSong.coverLink
               : "https://files.readme.io/f2e91bb-portalDocs-sonosApp-defaultArtAlone.png"
           }
         />
@@ -59,11 +55,7 @@ function MusicPlayer() {
         customAdditionalControls={[
           RHAP_UI.LOOP,
           <div>
-            {currentSong.isFavorite ? (
-              <BsStarFill color={COLORS.accentColor} size={22} />
-            ) : (
-              <BsStar color={COLORS.accentColor} size={22} />
-            )}
+            <FavoriteButton song={currentSong} />
           </div>,
         ]}
       />

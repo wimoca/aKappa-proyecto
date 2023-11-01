@@ -10,7 +10,7 @@ function SideBar() {
       style={{
         position: "sticky",
         top: 0,
-        minHeight: "100vh",
+        height: "100vh",
         width: "20%",
         backgroundColor: COLORS.highlightBackgroundColor,
         borderRadius: 20,
@@ -47,7 +47,6 @@ function SideBar() {
           alignItems: "center",
           padding: 20,
           justifyContent: "space-evenly",
-          //justifyContent: "center",
           cursor: "pointer",
         }}
       >
