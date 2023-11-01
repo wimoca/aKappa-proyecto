@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../credenciales";
 export const getOnSnapshotUserData = async (setData) => {
-  await getDocs(
+  await onSnapshot(
     query(collection(db, "users"), where("email", "==", auth.currentUser.email))
   ).then(async (querySnapshot) => {
     const newData = querySnapshot.docs.map((doc) => ({

@@ -5,6 +5,8 @@ import songs from "../../assets/songs.json";
 import { getData } from "../../firebase/hooks/getData";
 import { getUserData } from "../../firebase/hooks/getUserData";
 import { getOnSnapshotUserData } from "../../firebase/hooks/getOnSnapshotUserData";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { auth, db } from "../../firebase/credenciales";
 
 function PlayerState(props) {
   const initialState = {
@@ -17,7 +19,14 @@ function PlayerState(props) {
   useEffect(() => {
     const getMusicLibrary = async () => {
       await getData(setSongsList);
-      await getOnSnapshotUserData(setUserData);
+      onSnapshot(
+        query(
+          collection(db, "users"),
+          where("email", "==", auth.currentUser.email)
+        ),
+        (snapshot) =>
+          setUserData(snapshot.docs.map((doc) => ({ ...doc.data() })))
+      );
     };
     getMusicLibrary();
   }, []);
