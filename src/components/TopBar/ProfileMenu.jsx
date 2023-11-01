@@ -31,7 +31,7 @@ export default function ProfileMenu() {
   }, [userData]);
 
   const handleSingOut = async () => {
-    setCurrentSong(null);
+    setCurrentSong({});
     await signOut(auth).then(navigate("/"));
   };
 
