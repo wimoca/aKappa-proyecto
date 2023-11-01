@@ -24,6 +24,10 @@ function EditProfilePage() {
   const [profileLink, setProfileLink] = useState("");
   //const [isloading, setIsLoading] = useState(false);
 
+  const isAllWhiteSpace = (name) => {
+    return /^\s+$/.test(name);
+  };
+
   const onHandleSubmit = async () => {
     await updateProfileData(name, profileLink);
     //await getUserData(setUserData);
@@ -43,8 +47,10 @@ function EditProfilePage() {
       return;
     }
     if (
-      name == data[0]["name"] &&
-      profileLink == userData[0]["profilePhotoLink"]
+      (name == data[0]["name"] &&
+        profileLink == userData[0]["profilePhotoLink"]) ||
+      isAllWhiteSpace(name) ||
+      name.length == 0
     ) {
       setIsButtonDisabled(true);
     } else {
