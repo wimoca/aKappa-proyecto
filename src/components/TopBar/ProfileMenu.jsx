@@ -20,11 +20,11 @@ export default function ProfileMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const { userData, setCurrentSong } = useContext(playerContext);
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
   const [profileLink, setProfileLink] = useState("");
 
   useEffect(() => {
-    setData(userData);
+    //setData(userData);
     if (userData.length > 0) {
       setProfileLink(userData[0]["profilePhotoLink"]);
     }
@@ -42,7 +42,7 @@ export default function ProfileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  if (data.length == 0) {
+  if (userData.length == 0) {
     return;
   }
   return (

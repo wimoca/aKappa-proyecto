@@ -19,13 +19,20 @@ function PlayerState(props) {
   useEffect(() => {
     const getMusicLibrary = async () => {
       await getData(setSongsList);
+
+      //onSnapshot para cargar datos en tiempo real
+      //Necesario el de crear constante para que agregue delay(supongo) y se cargue nuevos datos.
       onSnapshot(
         query(
           collection(db, "users"),
           where("email", "==", auth.currentUser.email)
         ),
-        (snapshot) =>
-          setUserData(snapshot.docs.map((doc) => ({ ...doc.data() })))
+        (snapshot) => {
+          const newData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+          //setUserData(snapshot.docs.map((doc) => ({ ...doc.data() })));
+          setUserData(newData);
+          console.log("snapshot", newData);
+        }
       );
     };
     getMusicLibrary();
