@@ -49,13 +49,16 @@ function FavoriteButton({ song }) {
 
   if (userData[0]["favorites"].some((item) => item.id === song.id)) {
     return (
-      <Button onClick={() => onHandleClick(song, "remove")}>
+      <Button
+        onClick={() => onHandleClick(song, "remove")}
+        sx={{ minWidth: 40 }}
+      >
         <BsStarFill color={COLORS.accentColor} size={22} />
       </Button>
     );
   } else {
     return (
-      <Button onClick={() => onHandleClick(song, "add")}>
+      <Button onClick={() => onHandleClick(song, "add")} sx={{ minWidth: 40 }}>
         <BsStar color={COLORS.accentColor} size={22} />
       </Button>
     );
