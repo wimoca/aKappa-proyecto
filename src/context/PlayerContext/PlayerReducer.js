@@ -15,6 +15,11 @@ const playerReducer = (state, action) => {
         ...state,
         userData: action.data,
       };
+    case "SET_PLAYLIST_ARRAY":
+      return {
+        ...state,
+        playlistSongs: action.data,
+      };
 
     default:
       break;

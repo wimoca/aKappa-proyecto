@@ -9,6 +9,7 @@ import {
   BiSolidRightArrowCircle,
 } from "react-icons/bi";
 import { COLORS } from "../../colors/colors";
+import NavigationButtons from "./NavigationButtons";
 
 function TopBar() {
   return (
@@ -20,43 +21,7 @@ function TopBar() {
           width: "100%",
         }}
       >
-        <div
-          style={{
-            marginRight: 20,
-            backgroundColor: COLORS.highlightBackgroundColor,
-            height: "87%",
-            borderRadius: 50,
-          }}
-        >
-          <div style={{ whiteSpace: "nowrap" }}>
-            <Button
-              size="small"
-              sx={{
-                borderRadius: 50,
-                color: COLORS.textColor,
-                "&:hover": {
-                  borderRadius: 50,
-                },
-              }}
-            >
-              <BiSolidLeftArrowCircle size={30} color={COLORS.accentColor} />
-            </Button>
-            <Button
-              size="small"
-              sx={{
-                borderRadius: 50,
-                overflow: "clip",
-                color: COLORS.textColor,
-                "&:hover": {
-                  borderRadius: 50,
-                },
-              }}
-            >
-              <BiSolidRightArrowCircle size={30} color={COLORS.accentColor} />
-            </Button>
-          </div>
-        </div>
-
+        <NavigationButtons />
         <SearchBar />
       </div>
       <ProfileMenu />

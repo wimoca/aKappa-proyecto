@@ -44,6 +44,8 @@ function PlayerState(props) {
     dispatch({ type: "SET_SONGS_LIST", data: musicLibrary });
   const setUserData = (userData) =>
     dispatch({ type: "SET_USER_DATA", data: userData });
+  const setPlaylist = (songsArray) =>
+    dispatch({ type: "SET_PLAYLIST_ARRAY", data: songsArray });
   return (
     <playerContext.Provider
       value={{
