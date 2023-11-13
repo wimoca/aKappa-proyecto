@@ -23,10 +23,10 @@ import {
 } from "react-icons/md";
 import { createEmptyPlaylist } from "../../firebase/hooks/createEmptyPlaylist";
 import { NestedMenuItem } from "mui-nested-menu";
-import { addToPlaylist } from "../../firebase/hooks/AddToPlaylist";
 import { enqueueSnackbar } from "notistack";
 import { SlOptionsVertical } from "react-icons/sl";
 import { removeFromPlaylist } from "../../firebase/hooks/removeFromPlaylist";
+import { addToPlaylist } from "../../firebase/hooks/addToPlaylist";
 
 export default function ListSongMenu({ song, isInPlaylist, playlistId }) {
   const navigate = useNavigate();
