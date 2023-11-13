@@ -19,7 +19,7 @@ import { BiSolidPlaylist } from "react-icons/bi";
 import { MdPlaylistAdd, MdPlaylistPlay } from "react-icons/md";
 import { createEmptyPlaylist } from "../../firebase/hooks/createEmptyPlaylist";
 import { NestedMenuItem } from "mui-nested-menu";
-import { addToPlaylist } from "../../firebase/hooks/AddToPlaylist";
+import { addToPlaylist } from "../../firebase/hooks/addToPlaylist";
 import { enqueueSnackbar } from "notistack";
 
 export default function PlaylistMenu() {
