@@ -6,12 +6,18 @@ import { COLORS } from "../../colors/colors";
 import LoadingComponent from "../../components/LoadingComponent";
 
 function FavoritesPage() {
-  const { songsList, setCurrentSong, userData } = useContext(playerContext);
+  const { songsList, setCurrentSong, userData, setPlaylistSongs } =
+    useContext(playerContext);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(userData);
   }, [userData]);
+
+  const handleClick = (song) => {
+    setPlaylistSongs([]);
+    setCurrentSong(song);
+  };
 
   if (data.length == 0) {
     return <LoadingComponent />;
@@ -34,7 +40,7 @@ function FavoritesPage() {
           return (
             <ListSongCard
               song={song}
-              onClick={() => setCurrentSong(song)}
+              onClick={() => handleClick(song)}
               key={song.id}
             />
           );

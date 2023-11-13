@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../credenciales";
 
-export const createEmptyPlaylist = async () => {
+export const createEmptyPlaylist = async (playlistLength) => {
   // const q = query(
   //   collection(db, "users"),
   //   where("email", "==", auth.currentUser.email)
@@ -19,10 +19,11 @@ export const createEmptyPlaylist = async () => {
     querySnapshot.docs.map((doc) => {
       updateDoc(doc.ref, {
         ...doc.data(),
-        playlists: {
-          name: "test",
+        playlists: arrayUnion({
+          id: crypto.randomUUID(), // crea id random sin necesidad de librerias.
+          name: `Playlist #${playlistLength + 1}`,
           playlistSet: [],
-        },
+        }),
       });
     });
   });

@@ -16,16 +16,22 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/credenciales";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { BiSolidPlaylist } from "react-icons/bi";
-import { MdPlaylistAdd, MdPlaylistPlay } from "react-icons/md";
+import {
+  MdPlaylistAdd,
+  MdPlaylistPlay,
+  MdPlaylistRemove,
+} from "react-icons/md";
 import { createEmptyPlaylist } from "../../firebase/hooks/createEmptyPlaylist";
 import { NestedMenuItem } from "mui-nested-menu";
 import { addToPlaylist } from "../../firebase/hooks/AddToPlaylist";
 import { enqueueSnackbar } from "notistack";
+import { SlOptionsVertical } from "react-icons/sl";
+import { removeFromPlaylist } from "../../firebase/hooks/removeFromPlaylist";
 
-export default function PlaylistMenu() {
+export default function ListSongMenu({ song, isInPlaylist, playlistId }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const { userData, setCurrentSong, currentSong } = useContext(playerContext);
+  const { userData } = useContext(playerContext);
   //const [playlistLength, setPlaylistLength] = useState(0);
 
   // useEffect(() => {
@@ -34,9 +40,9 @@ export default function PlaylistMenu() {
   //   }
   // }, [userData]);
 
-  const handleAddToPlaylist = async (data, id) => {
+  const handleAddToPlaylist = async (id) => {
     try {
-      await addToPlaylist(currentSong, data, id);
+      await addToPlaylist(song, userData, id);
       enqueueSnackbar("Canción añadida a la playlist con éxito", {
         variant: "success",
       });
@@ -46,14 +52,12 @@ export default function PlaylistMenu() {
         { variant: "warning" }
       );
     }
-
-    console.log(data);
   };
 
-  const handleCreatePlaylist = async () => {
-    await createEmptyPlaylist(userData[0]["playlists"].length);
+  const handleRemoveFromPlaylist = async () => {
+    await removeFromPlaylist(song, userData, playlistId);
+    enqueueSnackbar("Canción removida de la playlist.", { variant: "warning" });
   };
-
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -76,7 +80,7 @@ export default function PlaylistMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <BiSolidPlaylist size={22} color={COLORS.accentColor} />
+            <SlOptionsVertical size={22} color={COLORS.accentColor} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -119,13 +123,6 @@ export default function PlaylistMenu() {
         //transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={() => handleCreatePlaylist()}>
-          <ListItemIcon>
-            <MdPlaylistAdd size={22} color={COLORS.accentColor} />
-          </ListItemIcon>
-          Crear Playlist
-        </MenuItem>
-        <Divider />
         {/* <MenuItem onClick={() => {}}>
           <ListItemIcon>
             <MdPlaylistPlay size={22} color={COLORS.accentColor} />
@@ -148,13 +145,15 @@ export default function PlaylistMenu() {
                 filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               },
             },
+            anchorOrigin: { horizontal: "left", vertical: "top" },
+            transformOrigin: { horizontal: "right", vertical: "top" }, // Esto para que el menu apareza fuera del primer menu
           }}
         >
           {userData[0]["playlists"].map((playlist) => {
             return (
               <MenuItem
                 key={playlist.id}
-                onClick={() => handleAddToPlaylist(userData, playlist.id)}
+                onClick={() => handleAddToPlaylist(playlist.id)}
               >
                 <ListItemIcon>
                   <MdPlaylistPlay size={22} color={COLORS.accentColor} />
@@ -164,6 +163,18 @@ export default function PlaylistMenu() {
             );
           })}
         </NestedMenuItem>
+        <Divider />
+        {isInPlaylist && (
+          <MenuItem
+            sx={{ color: "red" }}
+            onClick={() => handleRemoveFromPlaylist()}
+          >
+            <ListItemIcon>
+              <MdPlaylistRemove size={22} color="red" />
+            </ListItemIcon>
+            Eliminar de la Playlist
+          </MenuItem>
+        )}
       </Menu>
     </>
   );

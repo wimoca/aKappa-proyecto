@@ -9,7 +9,8 @@ import { styles } from "./styles";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 
 function SearchPage() {
-  const { setCurrentSong, songsList } = useContext(playerContext);
+  const { setCurrentSong, songsList, setPlaylistSongs } =
+    useContext(playerContext);
   //const [currentSong, setCurrentSong] = useState(null);
   //const [playerKey, setPlayerKey] = useState(0);
 
@@ -17,6 +18,7 @@ function SearchPage() {
   const [filteredArray, setFilteredArray] = useState([]);
 
   const handleClick = (song) => {
+    setPlaylistSongs([]);
     setCurrentSong(song);
     //setPlayerKey((key) => key + 1);
   };

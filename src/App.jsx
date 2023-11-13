@@ -17,9 +17,19 @@ import { auth } from "./firebase/credenciales";
 import LoginPage from "./pages/LoginPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import LoadingComponent from "./components/LoadingComponent";
+import PlaylistPage from "./pages/PlaylistPage";
+import { useContext, useEffect, useState } from "react";
+import playerContext from "./context/PlayerContext/PlayerContext";
 
 function App() {
+  const { playlistSongs } = useContext(playerContext);
   const [user, loading, error] = useAuthState(auth);
+  const [playerKey, setPlayerKey] = useState(0);
+
+  useEffect(() => {
+    setPlayerKey((i) => i + 1);
+  }, [playlistSongs]);
+
   if (loading) {
     return <LoadingComponent fullscreen={true} />;
   }
@@ -43,12 +53,13 @@ function App() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
+              <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
               <Route path="*" element={<Navigate to={"/"} replace />} />
             </Routes>
           </div>
         </div>
         <div style={{ position: "fixed", bottom: 0, left: 0, width: "100%" }}>
-          <MusicPlayer />
+          <MusicPlayer key={playerKey} />
         </div>
       </div>
     );

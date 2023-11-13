@@ -13,6 +13,7 @@ function PlayerState(props) {
     currentSong: {},
     songsList: [],
     userData: [],
+    playlistSongs: [],
   };
   const [state, dispatch] = useReducer(playerReducer, initialState);
 
@@ -44,7 +45,7 @@ function PlayerState(props) {
     dispatch({ type: "SET_SONGS_LIST", data: musicLibrary });
   const setUserData = (userData) =>
     dispatch({ type: "SET_USER_DATA", data: userData });
-  const setPlaylist = (songsArray) =>
+  const setPlaylistSongs = (songsArray) =>
     dispatch({ type: "SET_PLAYLIST_ARRAY", data: songsArray });
   return (
     <playerContext.Provider
@@ -52,8 +53,10 @@ function PlayerState(props) {
         currentSong: state.currentSong,
         songsList: state.songsList,
         userData: state.userData,
-        setUserData,
+        playlistSongs: state.playlistSongs,
 
+        setUserData,
+        setPlaylistSongs,
         setCurrentSong,
         setSongsList,
       }}
