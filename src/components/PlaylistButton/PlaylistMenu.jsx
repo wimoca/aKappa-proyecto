@@ -8,12 +8,8 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import { BsPersonCircle } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
 import { COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/credenciales";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { MdPlaylistAdd, MdPlaylistPlay } from "react-icons/md";
@@ -22,7 +18,7 @@ import { NestedMenuItem } from "mui-nested-menu";
 import { addToPlaylist } from "../../firebase/hooks/addToPlaylist";
 import { enqueueSnackbar } from "notistack";
 
-export default function PlaylistMenu() {
+export default function PlaylistMenu(props) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const { userData, setCurrentSong, currentSong } = useContext(playerContext);
@@ -36,7 +32,7 @@ export default function PlaylistMenu() {
 
   const handleAddToPlaylist = async (data, id) => {
     try {
-      await addToPlaylist(currentSong, data, id);
+      await addToPlaylist(props.song, data, id);
       enqueueSnackbar("Canción añadida a la playlist con éxito", {
         variant: "success",
       });

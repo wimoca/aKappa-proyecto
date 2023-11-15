@@ -23,6 +23,7 @@ function TopBar() {
       >
         <NavigationButtons />
         <SearchBar />
+        
       </div>
       <ProfileMenu />
     </div>

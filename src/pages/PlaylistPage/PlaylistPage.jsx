@@ -6,7 +6,7 @@ import LoadingComponent from "../../components/LoadingComponent";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
 
 function PlaylistPage() {
-  const { userData, setCurrentSong, playlistSongs, setPlaylistSongs } =
+  const { userData, playlistIndex, setPlaylistIndex, setPlaylistSongs } =
     useContext(playerContext);
   const { playlistId } = useParams();
 
@@ -21,6 +21,12 @@ function PlaylistPage() {
     //   setPlaylistSongs(playlistData.playlistSet);
     // }
     setPlaylistSongs(playlistData.playlistSet);
+    setPlaylistIndex(0);
+  };
+
+  const handlePlaylistIndex = (index) => {
+    setPlaylistSongs(playlistData.playlistSet);
+    setPlaylistIndex(index);
   };
 
   if (userData.length === 0) {
@@ -33,7 +39,7 @@ function PlaylistPage() {
   return (
     <div>
       <Typography variant="h3">{playlistData.name}</Typography>
-      {/* <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button> */}
+      <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button>
       {playlistData.playlistSet.map((song, index) => {
         return (
           <div key={song.id} style={{ display: "flex", alignItems: "center" }}>
@@ -45,7 +51,7 @@ function PlaylistPage() {
                 song={song}
                 isInPlaylist={true}
                 playlistId={playlistId}
-                onClick={() => setCurrentSong(song)}
+                onClick={() => handlePlaylistIndex(index)}
               />
             </div>
           </div>

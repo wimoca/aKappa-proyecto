@@ -11,26 +11,65 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import PlaylistButton from "../PlaylistButton";
 
 function MusicPlayer() {
-  const { currentSong, playlistSongs, setCurrentSong } =
+  const { currentSong, playlistSongs, playlistIndex } =
     useContext(playerContext);
   const [currentTrack, setTrackIndex] = useState(0);
+  const [playlistCurrentSong, setPlaylistCurrentSong] = useState({});
+  const [inPlaylist, setInPlaylist] = useState(false);
 
-  if (currentTrack > playlistSongs.length) {
-    setCurrentSong(0);
-  }
+  // if (currentTrack > playlistSongs.length) {
+  //   setCurrentSong({});
+  // }
+
+  // useEffect(() => {
+  //   if (playlistSongs.length !== 0) {
+  //     setInPlaylist(true);
+  //   } else {
+  //     setInPlaylist(false);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (playlistSongs.length !== 0) {
-      setCurrentSong(playlistSongs[currentTrack]);
+      setPlaylistCurrentSong(playlistSongs[currentTrack]);
+    }
+  }, [currentTrack]);
+
+  useEffect(() => {
+    setPlaylistCurrentSong(playlistSongs[0]);
+    // if (currentTrack > playlistSongs.length) {
+    //   setPlaylistCurrentSong({});
+    // }
+    if (playlistSongs.length !== 0) {
+      setInPlaylist(true);
+    } else {
+      setInPlaylist(false);
     }
     console.log(playlistSongs);
-  }, [playlistSongs, currentTrack]);
+  }, [playlistSongs]);
+
+  useEffect(() => {
+    if (playlistIndex != -1) {
+      setTrackIndex(playlistIndex);
+    }
+  }, [playlistIndex]);
 
   const handleClickNext = () => {
     console.log("click next");
     if (playlistSongs.length !== 0) {
       setTrackIndex((currentTrack) =>
-        currentTrack < playlistSongs.length - 1 ? currentTrack + 1 : 0
+        currentTrack < playlistSongs.length - 1
+          ? currentTrack + 1
+          : playlistSongs.length - 1
+      );
+    }
+  };
+
+  const handleClickPrevious = () => {
+    console.log("click prev");
+    if (playlistSongs.length !== 0) {
+      setTrackIndex((currentTrack) =>
+        currentTrack === 0 ? 0 : currentTrack - 1
       );
     }
   };
@@ -39,56 +78,74 @@ function MusicPlayer() {
     console.log("end");
     if (playlistSongs.length !== 0) {
       setTrackIndex((currentTrack) =>
-        currentTrack < playlistSongs.length - 1 ? currentTrack + 1 : 0
+        currentTrack < playlistSongs.length - 1
+          ? currentTrack + 1
+          : playlistSongs.length - 1
       );
     }
   };
 
-  if (isEmpty(currentSong)) {
+  if (isEmpty(currentSong) && !inPlaylist) {
     return;
   }
+
+  // if (currentSong == undefined) {
+  //   return;
+  // }
 
   return (
     <div style={styles.container}>
       <div style={{ marginRight: 10 }}>
-        <img style={styles.cover} src={currentSong.coverLink} />
+        <img
+          style={styles.cover}
+          src={
+            inPlaylist ? playlistCurrentSong.coverLink : currentSong.coverLink
+          }
+        />
       </div>
       <div style={styles.songInformationContainer}>
-        <div style={styles.artistInfo}>{currentSong.artist}</div>
-        {currentSong.title.length > 15 ? (
+        <div style={styles.artistInfo}>
+          {inPlaylist ? playlistCurrentSong.artist : currentSong.artist}
+        </div>
+        {(inPlaylist ? playlistCurrentSong : currentSong).title.length > 15 ? (
           <marquee style={styles.songInfo} scrollamount="4">
-            {currentSong.title}
+            {inPlaylist ? playlistCurrentSong.title : currentSong.title}
           </marquee>
         ) : (
-          <div style={styles.songInfo}>{currentSong.title}</div>
+          <div style={styles.songInfo}>
+            {inPlaylist ? playlistCurrentSong.title : currentSong.title}
+          </div>
         )}
 
-        {currentSong.album.length > 18 ? (
+        {(inPlaylist ? playlistCurrentSong : currentSong).album.length > 18 ? (
           <marquee style={styles.albumInfo} scrollamount="4">
-            {currentSong.album}
+            {inPlaylist ? playlistCurrentSong.album : currentSong.album}
           </marquee>
         ) : (
-          <div style={styles.albumInfo}>{currentSong.album}</div>
+          <div style={styles.albumInfo}>
+            {inPlaylist ? playlistCurrentSong.album : currentSong.album}
+          </div>
         )}
       </div>
       <H5AudioPlayer
-        src={
-          playlistSongs.length == 0
-            ? currentSong.link
-            : playlistSongs[currentTrack].link
-        }
+        src={inPlaylist ? playlistCurrentSong.link : currentSong.link}
         showSkipControls={playlistSongs.length == 0 ? false : true}
         onClickNext={handleClickNext}
+        onClickPrevious={handleClickPrevious}
         onEnded={handleEnd}
         autoPlay
         volume={0.5}
         customAdditionalControls={[
           RHAP_UI.LOOP,
           <div>
-            <FavoriteButton song={currentSong} />
+            <FavoriteButton
+              song={inPlaylist ? playlistCurrentSong : currentSong}
+            />
           </div>,
           <div>
-            <PlaylistButton />
+            <PlaylistButton
+              song={inPlaylist ? playlistCurrentSong : currentSong}
+            />
           </div>,
         ]}
       />
