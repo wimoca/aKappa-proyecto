@@ -20,13 +20,15 @@ function PlaylistPage() {
     //   setCurrentSong({});
     //   setPlaylistSongs(playlistData.playlistSet);
     // }
-    setPlaylistSongs(playlistData.playlistSet);
+    setPlaylistSongs([...playlistData.playlistSet]);
     setPlaylistIndex(0);
+    console.log(playlistIndex, "playlistPageButton");
   };
 
   const handlePlaylistIndex = (index) => {
-    setPlaylistSongs(playlistData.playlistSet);
     setPlaylistIndex(index);
+    setPlaylistSongs(playlistData.playlistSet);
+    console.log(index, "playlistPage");
   };
 
   if (userData.length === 0) {

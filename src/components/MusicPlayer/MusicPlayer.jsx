@@ -11,7 +11,7 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import PlaylistButton from "../PlaylistButton";
 
 function MusicPlayer() {
-  const { currentSong, playlistSongs, playlistIndex } =
+  const { currentSong, playlistSongs, playlistIndex, setPlaylistIndex } =
     useContext(playerContext);
   const [currentTrack, setTrackIndex] = useState(0);
   const [playlistCurrentSong, setPlaylistCurrentSong] = useState({});
