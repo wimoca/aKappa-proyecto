@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
+import { COLORS } from "../../colors/colors";
+import { FaPlay } from "react-icons/fa6";
 
 function PlaylistPage() {
   const { userData, playlistIndex, setPlaylistIndex, setPlaylistSongs } =
@@ -41,7 +43,23 @@ function PlaylistPage() {
   return (
     <div>
       <Typography variant="h3">{playlistData.name}</Typography>
-      <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button>
+      <Button
+        onClick={() => handlePlayPlaylist()}
+        sx={{
+          backgroundColor: COLORS.highlightBackgroundColor,
+          color: COLORS.textColor,
+          borderRadius: 20,
+          paddingRight: 3,
+          paddingLeft: 3,
+          marginTop: 2,
+          marginBottom: 2,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaPlay size={18} style={{ marginRight: 10 }} />
+          Reproducir Playlist
+        </div>
+      </Button>
       {playlistData.playlistSet.map((song, index) => {
         return (
           <div key={song.id} style={{ display: "flex", alignItems: "center" }}>

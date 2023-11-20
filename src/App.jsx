@@ -20,6 +20,7 @@ import LoadingComponent from "./components/LoadingComponent";
 import PlaylistPage from "./pages/PlaylistPage";
 import { useContext, useEffect, useState } from "react";
 import playerContext from "./context/PlayerContext/PlayerContext";
+import GenrePage from "./pages/GenrePage";
 
 function App() {
   const { playlistSongs } = useContext(playerContext);
@@ -54,6 +55,7 @@ function App() {
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
               <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
+              <Route path="/genre/:genreName" element={<GenrePage />} />
               <Route path="*" element={<Navigate to={"/"} replace />} />
             </Routes>
           </div>
