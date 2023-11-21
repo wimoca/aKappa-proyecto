@@ -10,7 +10,7 @@ import SideBar from "../../components/SideBar";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import HomePageGenreCard from "./HomePageGenreCard";
-import Banner from "../../assets/banner.jpg";
+import Banner from "../../assets/BannerNoBorder.png";
 import BannerLogo from "../../assets/LogoNo.png";
 import { Box } from "@mui/material";
 
@@ -72,17 +72,27 @@ function HomePage() {
     return <LoadingComponent />;
   }
   return (
-    <div style={{ position: "relative" }}>
+    <div
+      style={{
+        position: "relative",
+        //width: "100%",
+      }}
+    >
       <div>
         <img
           src={Banner}
-          style={{ width: "100%", maxHeight: "100%", opacity: 0.04 }}
+          style={{
+            maxWidth: "79%",
+            height: "auto",
+            opacity: 0.04,
+            position: "fixed",
+          }}
         />
       </div>
-      <div style={{ position: "absolute", top: "0%" }}>
+      <div style={{ top: "0%" }}>
         <Box
           sx={{
-            width: "100%",
+            maxWidth: "100%",
             height: 350,
             //backgroundColor: "red",
             borderRadius: 30,
