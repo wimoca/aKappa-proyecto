@@ -10,6 +10,9 @@ import SideBar from "../../components/SideBar";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import HomePageGenreCard from "./HomePageGenreCard";
+import Banner from "../../assets/banner.jpg";
+import BannerLogo from "../../assets/LogoNo.png";
+import { Box } from "@mui/material";
 
 function HomePage() {
   //const genres = ["Rock", "Regueton", "Pop", "Rap", "House", "Esrock"];
@@ -69,17 +72,39 @@ function HomePage() {
     return <LoadingComponent />;
   }
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-        }}
-      >
-        {genres.map((genre) => {
-          return <HomePageGenreCard genre={genre} key={genre.id} />;
-        })}
+    <div style={{ position: "relative" }}>
+      <div>
+        <img
+          src={Banner}
+          style={{ width: "100%", maxHeight: "100%", opacity: 0.04 }}
+        />
+      </div>
+      <div style={{ position: "absolute", top: "0%" }}>
+        <Box
+          sx={{
+            width: "100%",
+            height: 350,
+            //backgroundColor: "red",
+            borderRadius: 30,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden",
+          }}
+        >
+          <img src={BannerLogo} style={{ width: 300, height: 150 }} />
+        </Box>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+          }}
+        >
+          {genres.map((genre) => {
+            return <HomePageGenreCard genre={genre} key={genre.id} />;
+          })}
+        </div>
       </div>
     </div>
 
