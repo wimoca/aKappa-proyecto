@@ -3,6 +3,9 @@ export const styles = {
   container: {
     textAlign: "center",
     marginTop: 20,
+    marginRight: 20,
+    backgroundColor: COLORS.highlightBackgroundColor,
+    borderRadius: 10,
   },
   infoContainer: {
     paddingLeft: 10,
@@ -16,7 +19,7 @@ export const styles = {
   cover: {
     height: "100%",
     aspectRatio: 1,
-    paddingLeft: 5,
+    //paddingLeft: 5,
   },
   text: {
     whiteSpace: "nowrap",

@@ -4,6 +4,7 @@ import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
+import Banner from "../../assets/BannerNoBorder.png";
 
 function GenrePage() {
   const { songsList, setPlaylistSongs, setCurrentSong } =
@@ -30,6 +31,17 @@ function GenrePage() {
 
   return (
     <div>
+      <div>
+        <img
+          src={Banner}
+          style={{
+            maxWidth: "79%",
+            height: "auto",
+            opacity: 0.03,
+            position: "fixed",
+          }}
+        />
+      </div>
       <div style={styles.cardContainer}>
         {genreSongs.map((song) => (
           <SongCard
