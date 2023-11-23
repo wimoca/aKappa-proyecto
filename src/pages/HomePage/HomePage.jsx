@@ -12,7 +12,8 @@ import LoadingComponent from "../../components/LoadingComponent";
 import HomePageGenreCard from "./HomePageGenreCard";
 import Banner from "../../assets/BannerNoBorder.png";
 import BannerLogo from "../../assets/LogoNo.png";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import HomePageArtistCard from "./HomePageArtistCard";
 
 function HomePage() {
   //const genres = ["Rock", "Regueton", "Pop", "Rap", "House", "Esrock"];
@@ -104,6 +105,28 @@ function HomePage() {
         >
           <img src={BannerLogo} style={{ width: 300, height: 150 }} />
         </Box>
+        {/* ARTISTAS DESTACADOS */}
+        <Typography variant="h5" marginBottom={1}>
+          ARTISTAS DESTACADOS
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "space-between",
+            marginBottom: 30,
+          }}
+        >
+          {genres.slice(0, 3).map((genre) => {
+            return <HomePageArtistCard genre={genre} key={genre.id} />;
+          })}
+        </div>
+        <Typography variant="h5" marginBottom={1}>
+          GENEROS MUSICALES
+        </Typography>
+
+        {/* GENEROS MUSICALER */}
         <div
           style={{
             display: "flex",
