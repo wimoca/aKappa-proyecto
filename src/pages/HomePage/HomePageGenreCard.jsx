@@ -46,6 +46,7 @@ function HomePageGenreCard({ genre }) {
       <Typography
         sx={{
           position: "absolute",
+          textShadow: "2px 2px 4px #000000",
         }}
         variant="h5"
       >

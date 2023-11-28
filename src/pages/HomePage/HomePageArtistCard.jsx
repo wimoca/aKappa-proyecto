@@ -4,18 +4,18 @@ import { COLORS } from "../../colors/colors";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { useNavigate } from "react-router-dom";
 
-function HomePageArtistCard({ genre }) {
+function HomePageArtistCard({ artist }) {
   const { userData, songsList } = useContext(playerContext);
-  const [genreSongs, setGenreSongs] = useState([]);
+  //const [artistsSongs, setArtistsSongs] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setGenreSongs(
-      songsList.filter((song) => {
-        return song.gender == genre.name;
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   setArtistsSongs(
+  //     songsList.filter((song) => {
+  //       return song.artist == artist.name;
+  //     })
+  //   );
+  // }, []);
 
   return (
     <Box
@@ -33,10 +33,10 @@ function HomePageArtistCard({ genre }) {
         alignItems: "center",
         cursor: "pointer",
       }}
-      onClick={() => navigate(`/genre/${genre.name}`)}
+      onClick={() => navigate(`/genre/${artist.name}`)}
     >
       <img
-        src={genre.background}
+        src={artist.background}
         style={{
           maxWidth: "100%",
           //maxHeight: "120%",
@@ -47,10 +47,11 @@ function HomePageArtistCard({ genre }) {
       <Typography
         sx={{
           position: "absolute",
+          textShadow: "2px 2px 4px #000000",
         }}
-        variant="h5"
+        variant="h4"
       >
-        {genre.displayName}
+        {artist.displayName}
       </Typography>
     </Box>
   );

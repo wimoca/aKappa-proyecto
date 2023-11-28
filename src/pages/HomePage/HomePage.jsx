@@ -17,6 +17,29 @@ import HomePageArtistCard from "./HomePageArtistCard";
 
 function HomePage() {
   //const genres = ["Rock", "Regueton", "Pop", "Rap", "House", "Esrock"];
+  const artists = [
+    {
+      id: 1,
+      name: "Daft Punk",
+      background:
+        "https://i.discogs.com/sP_wDoC5MsG9lZUfb9thLbpmMmL__nuVnGMNpwgjirE/rs:fit/g:sm/q:90/h:438/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTEyODkt/MTYxNTQ4NDUyOS00/Mjg0LmpwZWc.jpeg",
+      displayName: "Daft Punk",
+    },
+    {
+      id: 2,
+      name: "Avicii",
+      background:
+        "https://i.discogs.com/oluVtu246A658pNw1JvQLmH6mS0DKfajq8GtYk5PJ9o/rs:fit/g:sm/q:90/h:399/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTEyMzU5/NTgtMTI1MjI1ODE2/Ny5qcGVn.jpeg",
+      displayName: "Avicii",
+    },
+    {
+      id: 3,
+      name: "The Beatles",
+      background:
+        "https://i.discogs.com/YrZb0tNZaSP8pDrCOMa6ukA54CzlW-m4pL9ARW6R-zU/rs:fit/g:sm/q:90/h:374/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTgyNzMw/LTE2NTA4MTg4NTkt/OTkwMi5qcGVn.jpeg",
+      displayName: "The Beatles",
+    },
+  ];
   const genres = [
     {
       id: 1,
@@ -118,8 +141,8 @@ function HomePage() {
             marginBottom: 30,
           }}
         >
-          {genres.slice(0, 3).map((genre) => {
-            return <HomePageArtistCard genre={genre} key={genre.id} />;
+          {artists.map((artist) => {
+            return <HomePageArtistCard artist={artist} key={artist.id} />;
           })}
         </div>
         <Typography variant="h5" marginBottom={1} fontWeight={500}>

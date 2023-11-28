@@ -20,7 +20,7 @@ function GenrePage() {
   useEffect(() => {
     setGenreSongs(
       songsList.filter((song) => {
-        return song.gender == genreName;
+        return song.gender == genreName || song.artist == genreName;
       })
     );
   }, [songsList]);
