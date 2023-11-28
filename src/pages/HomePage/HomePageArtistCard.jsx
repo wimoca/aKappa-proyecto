@@ -20,7 +20,7 @@ function HomePageArtistCard({ genre }) {
   return (
     <Box
       sx={{
-        maxWidth: 420,
+        maxWidth: "100%",
         maxHeight: 250,
         margin: 1,
         //textAlign: "center",
@@ -38,9 +38,10 @@ function HomePageArtistCard({ genre }) {
       <img
         src={genre.background}
         style={{
-          maxWidth: "120%",
-          maxHeight: "120%",
+          maxWidth: "100%",
+          //maxHeight: "120%",
           opacity: 0.5,
+          objectFit: "cover",
         }}
       />
       <Typography

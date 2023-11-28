@@ -106,7 +106,7 @@ function HomePage() {
           <img src={BannerLogo} style={{ width: 300, height: 150 }} />
         </Box>
         {/* ARTISTAS DESTACADOS */}
-        <Typography variant="h5" marginBottom={1}>
+        <Typography variant="h5" marginBottom={1} fontWeight={500}>
           ARTISTAS DESTACADOS
         </Typography>
         <div
@@ -122,8 +122,8 @@ function HomePage() {
             return <HomePageArtistCard genre={genre} key={genre.id} />;
           })}
         </div>
-        <Typography variant="h5" marginBottom={1}>
-          GENEROS MUSICALES
+        <Typography variant="h5" marginBottom={1} fontWeight={500}>
+          GÉNEROS MUSICALES
         </Typography>
 
         {/* GENEROS MUSICALER */}
