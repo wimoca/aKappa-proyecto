@@ -4,6 +4,9 @@ export const styles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    position: "fixed",
+    width: "80%",
+    zIndex: 1000,
   },
   icon: {
     color: COLORS.accentColor,
