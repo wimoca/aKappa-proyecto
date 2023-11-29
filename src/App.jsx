@@ -45,19 +45,25 @@ function App() {
               width: "100%",
               paddingRight: 20,
               marginBottom: 200,
+              //borderRadius: 20,
             }}
           >
             <TopBar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/search/:searchTerm" element={<SearchPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/favorites" element={<FavoritesPage />} />
-              <Route path="/editProfile" element={<EditProfilePage />} />
-              <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
-              <Route path="/genre/:genreName" element={<GenrePage />} />
-              <Route path="*" element={<Navigate to={"/"} replace />} />
-            </Routes>
+            <div style={{ marginTop: 50 }}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search/:searchTerm" element={<SearchPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/favorites" element={<FavoritesPage />} />
+                <Route path="/editProfile" element={<EditProfilePage />} />
+                <Route
+                  path="/playlist/:playlistId"
+                  element={<PlaylistPage />}
+                />
+                <Route path="/genre/:genreName" element={<GenrePage />} />
+                <Route path="*" element={<Navigate to={"/"} replace />} />
+              </Routes>
+            </div>
           </div>
         </div>
         <div style={{ position: "fixed", bottom: 0, left: 0, width: "100%" }}>

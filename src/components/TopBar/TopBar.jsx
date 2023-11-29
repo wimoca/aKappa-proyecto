@@ -21,9 +21,8 @@ function TopBar() {
           width: "100%",
         }}
       >
-        <NavigationButtons />
+        {/* <NavigationButtons /> */}
         <SearchBar />
-        
       </div>
       <ProfileMenu />
     </div>
