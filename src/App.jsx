@@ -18,6 +18,7 @@ import LoginPage from "./pages/LoginPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import LoadingComponent from "./components/LoadingComponent";
 import PlaylistPage from "./pages/PlaylistPage";
+import SharedPlaylistPage from "./pages/SharedPlaylistPage";
 import { useContext, useEffect, useState } from "react";
 import playerContext from "./context/PlayerContext/PlayerContext";
 import GenrePage from "./pages/GenrePage";
@@ -61,6 +62,7 @@ function App() {
                   element={<PlaylistPage />}
                 />
                 <Route path="/genre/:genreName" element={<GenrePage />} />
+                <Route path="/share/user/:userId/playlist/:playlistId" element={<SharedPlaylistPage />} />
                 <Route path="*" element={<Navigate to={"/"} replace />} />
               </Routes>
             </div>
