@@ -30,7 +30,7 @@ function PlayerState(props) {
           where("email", "==", auth.currentUser.email)
         ),
         (snapshot) => {
-          const newData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+          const newData = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
           //setUserData(snapshot.docs.map((doc) => ({ ...doc.data() })));
           setUserData(newData);
           console.log("snapshot", newData);
